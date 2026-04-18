@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V's 2026 Goal List</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF8F0;
+    --pink-light: #FFE8EF;
+    --pink: #F9C4D2;
+    --pink-mid: #F0A0B8;
+    --blue-light: #E8F4FD;
+    --blue: #B8D9F0;
+    --blue-mid: #89BEE3;
+    --sage: #E8F0E8;
+    --sage-mid: #A8C4A8;
+    --lavender: #EDE8F8;
+    --lavender-mid: #B8A8E8;
+    --peach: #FDE8D8;
+    --peach-mid: #F0B898;
+    --morandi-1: #C4B5A8;
+    --morandi-2: #A8B5C4;
+    --morandi-3: #B5C4B0;
+    --text-dark: #3D3530;
+    --text-mid: #6B5D58;
+    --text-light: #9C8E88;
+    --shadow-soft: 0 4px 20px rgba(180,150,140,0.12);
+    --shadow-hover: 0 8px 32px rgba(180,150,140,0.2);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFE8EF 40%, #E8F4FD 100%);
+    min-height: 100vh;
+    color: var(--text-dark);
+    padding-bottom: 60px;
+  }
+
+  /* === HEADER === */
+  .site-header {
+    text-align: center;
+    padding: 48px 20px 32px;
+    position: relative;
+  }
+
+  .site-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--pink) 0%, var(--blue) 50%, var(--lavender) 100%);
+  }
+
+  .site-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #C48080 0%, #A888C4 50%, #80A8C4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+
+  .site-header .subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* === SYNC STATUS === */
+  .sync-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 12px;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  .sync-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--morandi-1);
+    transition: background 0.3s;
+  }
+
+  .sync-dot.syncing { background: #F0B898; animation: pulse 1s infinite; }
+  .sync-dot.ok { background: var(--sage-mid); }
+  .sync-dot.error { background: #F0A0A0; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* === SCRIPT URL CONFIG === */
+  .config-banner {
+    background: linear-gradient(135deg, #FFF0E8, #FFE8F5);
+    border: 1.5px dashed var(--pink-mid);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin: 0 auto 24px;
+    max-width: 860px;
+    font-size: 13px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .config-banner .icon { font-size: 18px; flex-shrink: 0; }
+
+  .config-banner input {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 14px;
+    border: 1.5px solid var(--pink);
+    border-radius: var(--radius-sm);
+    background: white;
+    font-size: 12px;
+    font-family: monospace;
+    color: var(--text-dark);
+    outline: none;
+  }
+
+  .config-banner input:focus { border-color: var(--pink-mid); }
+
+  .config-banner button {
+    padding: 8px 16px;
+    background: var(--pink-mid);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .config-banner button:hover { background: #E08898; }
+
+  /* === TODAY 3 THINGS === */
+  .today-banner {
+    max-width: 860px;
+    margin: 0 auto 32px;
+    background: linear-gradient(135deg, #FFF0F8 0%, #F0F0FF 100%);
+    border-radius: var(--radius);
+    border: 1.5px solid var(--lavender);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .today-banner h2 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--morandi-2);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .today-banner h2 .emoji { font-size: 18px; }
+
+  .today-items {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .today-item {
+    background: white;
+    border: 1.5px solid var(--lavender);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+  }
+
+  .today-item:hover { border-color: var(--lavender-mid); box-shadow: var(--shadow-soft); }
+
+  .today-item .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--lavender-mid);
+    flex-shrink: 0;
+  }
+
+  /* === MAIN GRID === */
+  .main-container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 24px;
+  }
+
+  /* === SECTION CARD === */
+  .section-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: box-shadow 0.3s;
+  }
+
+  .section-card:hover { box-shadow: var(--shadow-hover); }
+
+  .section-header {
+    padding: 20px 24px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .section-title-wrap { flex: 1; }
+
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 2px;
+  }
+
+  .section-stats {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* Section accent colors */
+  .section-work .section-header { background: linear-gradient(135deg, #FFF8F0, #FFE8EF); }
+  .section-work .section-icon { background: var(--pink-light); }
+  .section-growth .section-header { background: linear-gradient(135deg, #F0F0FF, #E8F4FD); }
+  .section-growth .section-icon { background: var(--lavender); }
+  .section-family .section-header { background: linear-gradient(135deg, #FFF0E8, #FDE8D8); }
+  .section-family .section-icon { background: var(--peach); }
+  .section-health .section-header { background: linear-gradient(135deg, #F0F8F0, #E8F4FD); }
+  .section-health .section-icon { background: var(--sage); }
+
+  /* Section progress bar strip */
+  .section-progress-strip {
+    height: 4px;
+    background: #F5F0EE;
+    position: relative;
+  }
+
+  .section-progress-fill {
+    position: absolute;
+    top: 0; left: 0; height: 100%;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .section-work .section-progress-fill { background: linear-gradient(90deg, var(--pink), var(--pink-mid)); }
+  .section-growth .section-progress-fill { background: linear-gradient(90deg, var(--lavender-mid), var(--blue-mid)); }
+  .section-family .section-progress-fill { background: linear-gradient(90deg, var(--peach), var(--peach-mid)); }
+  .section-health .section-progress-fill { background: linear-gradient(90deg, var(--sage-mid), var(--morandi-3)); }
+
+  /* === ADD GOAL INPUT === */
+  .add-goal-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F5F0EE;
+  }
+
+  .add-goal-row input {
+    flex: 1;
+    padding: 9px 14px;
+    border: 1.5px solid #EDE8E4;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .add-goal-row input:focus { border-color: var(--morandi-1); background: white; }
+
+  .add-goal-row button {
+    padding: 9px 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    color: white;
+  }
+
+  .section-work .add-goal-row button { background: var(--pink-mid); }
+  .section-work .add-goal-row button:hover { background: #E08898; }
+  .section-growth .add-goal-row button { background: var(--lavender-mid); }
+  .section-growth .add-goal-row button:hover { background: #9888D8; }
+  .section-family .add-goal-row button { background: var(--peach-mid); }
+  .section-family .add-goal-row button:hover { background: #E0A080; }
+  .section-health .add-goal-row button { background: var(--sage-mid); }
+  .section-health .add-goal-row button:hover { background: #88A888; }
+
+  /* === GOAL LIST === */
+  .goal-list { padding: 8px 16px 16px; }
+
+  .goal-item {
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #F0EBE8;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .goal-item:hover { border-color: var(--morandi-1); box-shadow: 0 2px 12px rgba(180,150,140,0.1); }
+
+  .goal-item.today-highlight {
+    border-color: var(--lavender-mid);
+    background: linear-gradient(135deg, #FDFAFF, #F8F0FF);
+  }
+
+  .goal-item.overdue {
+    border-color: #F0C0C0;
+    background: #FFF8F8;
+  }
+
+  .goal-item.completed {
+    opacity: 0.6;
+    border-color: #E8E8E8;
+    background: #FAFAFA;
+  }
+
+  .goal-row1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  /* === CHECKBOX === */
+  .goal-checkbox {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  .goal-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+  }
+
+  .goal-checkbox .check-visual {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--morandi-1);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .goal-checkbox input:checked + .check-visual {
+    background: var(--morandi-1);
+    border-color: var(--morandi-1);
+  }
+
+  .goal-checkbox input:checked + .check-visual::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: 2px solid white;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg) translateY(-1px);
+    display: block;
+  }
+
+  .goal-checkbox:hover .check-visual { border-color: var(--morandi-2); }
+
+  .goal-name {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.4;
+    word-break: break-all;
+  }
+
+  .goal-item.completed .goal-name {
+    text-decoration: line-through;
+    color: var(--text-light);
+  }
+
+  .goal-badges {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .badge-today {
+    background: var(--lavender);
+    color: var(--lavender-mid);
+    border: 1px solid var(--lavender-mid);
+  }
+
+  .badge-overdue {
+    background: #FFEEE8;
+    color: #D08080;
+    border: 1px solid #F0C0B0;
+  }
+
+  .badge-done {
+    background: var(--sage);
+    color: var(--sage-mid);
+    border: 1px solid var(--sage-mid);
+    font-size: 9px;
+  }
+
+  /* === PROGRESS === */
+  .goal-row2 { display: flex; align-items: center; gap: 10px; }
+
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: #F0EBE8;
+    border-radius: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.3s ease;
+    background: linear-gradient(90deg, var(--morandi-1), var(--morandi-2));
+  }
+
+  .section-work .progress-fill { background: linear-gradient(90deg, var(--pink), var(--pink-mid)); }
+  .section-growth .progress-fill { background: linear-gradient(90deg, var(--lavender-mid), var(--blue-mid)); }
+  .section-family .progress-fill { background: linear-gradient(90deg, var(--peach), var(--peach-mid)); }
+  .section-health .progress-fill { background: linear-gradient(90deg, var(--sage-mid), var(--morandi-3)); }
+
+  .progress-input {
+    width: 44px;
+    padding: 3px 6px;
+    border: 1.5px solid #EDE8E4;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-mid);
+    outline: none;
+    background: var(--cream);
+    transition: border-color 0.2s;
+  }
+
+  .progress-input:focus { border-color: var(--morandi-1); background: white; }
+
+  .progress-pct {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mid);
+    min-width: 30px;
+    text-align: right;
+  }
+
+  .progress-done-hint {
+    font-size: 10px;
+    color: var(--sage-mid);
+    background: var(--sage);
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+
+  .goal-item .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #D0C8C4;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .goal-item .delete-btn:hover { color: #E08888; background: #FFF0F0; }
+
+  .divider-completed {
+    font-size: 11px;
+    color: var(--text-light);
+    text-align: center;
+    margin: 12px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .divider-completed::before, .divider-completed::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #F0EBE8;
+  }
+
+  .empty-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-light);
+    padding: 20px 0;
+    font-style: italic;
+  }
+
+  /* === BOTTOM ACTIONS === */
+  .bottom-bar {
+    max-width: 860px;
+    margin: 32px auto 0;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .backup-btn {
+    padding: 10px 20px;
+    background: white;
+    border: 1.5px solid var(--morandi-1);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .backup-btn:hover { background: var(--cream); box-shadow: var(--shadow-soft); }
+
+  .last-sync {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* === TOAST === */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: white;
+    border: 1.5px solid #EDE8E4;
+    border-radius: 100px;
+    padding: 10px 20px;
+    font-size: 13px;
+    color: var(--text-mid);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* === LOADING === */
+  .loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,248,240,0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    gap: 16px;
+  }
+
+  .loading-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .loading-dots span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--pink-mid);
+    animation: bounce 0.8s ease-in-out infinite;
+  }
+
+  .loading-dots span:nth-child(2) { background: var(--lavender-mid); animation-delay: 0.15s; }
+  .loading-dots span:nth-child(3) { background: var(--peach-mid); animation-delay: 0.3s; }
+
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-12px); }
+  }
+
+  .loading-text { font-size: 14px; color: var(--text-light); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .sections-grid { grid-template-columns: 1fr; }
+    .site-header { padding: 32px 16px 24px; }
+    .today-banner, .main-container { padding: 0 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-dots">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="loading-text">讀取目標中...</div>
+</div>
+
+<!-- Header -->
+<div class="site-header">
+  <h1>V's 2026 Goal List</h1>
+  <div class="subtitle">一步一步，成為更好的自己 ✨</div>
+  <div class="sync-bar" style="margin-top:10px;">
+    <div class="sync-dot" id="syncDot"></div>
+    <span id="syncText">尚未連接</span>
+  </div>
+</div>
+
+<!-- Config Banner -->
+<div style="max-width:860px;margin:0 auto 24px;padding:0 20px;">
+  <div class="config-banner" id="configBanner">
+    <span class="icon">🔗</span>
+    <div style="flex:1;">
+      <div style="font-weight:500;margin-bottom:6px;">設定 Google Sheets 連接網址</div>
+      <div style="margin-bottom:8px;opacity:0.8;">請輸入你的 Google Apps Script Web App URL（詳見 README 說明）</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <input type="text" id="scriptUrlInput" placeholder="https://script.google.com/macros/s/xxxxxx/exec" />
+        <button onclick="saveScriptUrl()">儲存並連接</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Today's 3 Things -->
+<div style="max-width:860px;margin:0 auto 28px;padding:0 20px;">
+  <div class="today-banner">
+    <h2><span class="emoji">🌸</span> 今日3件事 <span style="font-size:12px;font-weight:400;color:var(--text-light);margin-left:6px;">每天建議可以做的3個目標</span></h2>
+    <div class="today-items" id="todayItems">
+      <div style="font-size:13px;color:var(--text-light);font-style:italic;">載入目標後顯示...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Sections -->
+<div class="main-container">
+  <div class="sections-grid" id="sectionsGrid">
+
+    <!-- Work -->
+    <div class="section-card section-work" id="section-work">
+      <div class="section-header">
+        <div class="section-icon">💼</div>
+        <div class="section-title-wrap">
+          <div class="section-title">工作</div>
+          <div class="section-stats" id="stats-work">0 個目標</div>
+        </div>
+      </div>
+      <div class="section-progress-strip"><div class="section-progress-fill" id="strip-work" style="width:0%"></div></div>
+      <div class="add-goal-row">
+        <input type="text" placeholder="輸入工作目標..." id="input-work" onkeydown="if(event.key==='Enter')addGoal('work')">
+        <button onclick="addGoal('work')">新增</button>
+      </div>
+      <div class="goal-list" id="list-work"></div>
+    </div>
+
+    <!-- Growth -->
+    <div class="section-card section-growth" id="section-growth">
+      <div class="section-header">
+        <div class="section-icon">🌱</div>
+        <div class="section-title-wrap">
+          <div class="section-title">成長</div>
+          <div class="section-stats" id="stats-growth">0 個目標</div>
+        </div>
+      </div>
+      <div class="section-progress-strip"><div class="section-progress-fill" id="strip-growth" style="width:0%"></div></div>
+      <div class="add-goal-row">
+        <input type="text" placeholder="輸入成長目標..." id="input-growth" onkeydown="if(event.key==='Enter')addGoal('growth')">
+        <button onclick="addGoal('growth')">新增</button>
+      </div>
+      <div class="goal-list" id="list-growth"></div>
+    </div>
+
+    <!-- Family -->
+    <div class="section-card section-family" id="section-family">
+      <div class="section-header">
+        <div class="section-icon">🏠</div>
+        <div class="section-title-wrap">
+          <div class="section-title">家庭</div>
+          <div class="section-stats" id="stats-family">0 個目標</div>
+        </div>
+      </div>
+      <div class="section-progress-strip"><div class="section-progress-fill" id="strip-family" style="width:0%"></div></div>
+      <div class="add-goal-row">
+        <input type="text" placeholder="輸入家庭目標..." id="input-family" onkeydown="if(event.key==='Enter')addGoal('family')">
+        <button onclick="addGoal('family')">新增</button>
+      </div>
+      <div class="goal-list" id="list-family"></div>
+    </div>
+
+    <!-- Health -->
+    <div class="section-card section-health" id="section-health">
+      <div class="section-header">
+        <div class="section-icon">🌿</div>
+        <div class="section-title-wrap">
+          <div class="section-title">健康</div>
+          <div class="section-stats" id="stats-health">0 個目標</div>
+        </div>
+      </div>
+      <div class="section-progress-strip"><div class="section-progress-fill" id="strip-health" style="width:0%"></div></div>
+      <div class="add-goal-row">
+        <input type="text" placeholder="輸入健康目標..." id="input-health" onkeydown="if(event.key==='Enter')addGoal('health')">
+        <button onclick="addGoal('health')">新增</button>
+      </div>
+      <div class="goal-list" id="list-health"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Bottom Bar -->
+<div class="bottom-bar">
+  <button class="backup-btn" onclick="manualBackup()">
+    📦 建立本月備份
+  </button>
+  <div class="last-sync" id="lastSync"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// === STATE ===
+let goals = {};
+let SCRIPT_URL = '';
+const SECTIONS = ['work','growth','family','health'];
+const TODAY_KEY = 'v2026_today_picks_' + new Date().toDateString();
+
+// === INIT ===
+window.addEventListener('load', async () => {
+  SCRIPT_URL = localStorage.getItem('v2026_script_url') || '';
+  if (SCRIPT_URL) {
+    document.getElementById('configBanner').style.display = 'none';
+    document.getElementById('scriptUrlInput').value = SCRIPT_URL;
+    await loadFromSheets();
+  } else {
+    hideLoading();
+    loadLocalData();
+    renderAll();
+  }
+  checkAutoBackup();
+});
+
+function saveScriptUrl() {
+  const val = document.getElementById('scriptUrlInput').value.trim();
+  if (!val || !val.startsWith('https://script.google.com')) {
+    showToast('❌ 請輸入有效的 Google Apps Script URL');
+    return;
+  }
+  SCRIPT_URL = val;
+  localStorage.setItem('v2026_script_url', SCRIPT_URL);
+  document.getElementById('configBanner').style.display = 'none';
+  showToast('✅ URL 已儲存，正在連接...');
+  loadFromSheets();
+}
+
+// === LOCAL STORAGE ===
+function saveLocalData() {
+  localStorage.setItem('v2026_goals', JSON.stringify(goals));
+}
+
+function loadLocalData() {
+  const raw = localStorage.getItem('v2026_goals');
+  if (raw) {
+    try { goals = JSON.parse(raw); }
+    catch(e) { goals = {}; }
+  }
+  SECTIONS.forEach(s => { if (!goals[s]) goals[s] = []; });
+}
+
+// === GOOGLE SHEETS SYNC ===
+function setSyncStatus(status, text) {
+  const dot = document.getElementById('syncDot');
+  const txt = document.getElementById('syncText');
+  dot.className = 'sync-dot ' + status;
+  txt.textContent = text;
+}
+
+async function loadFromSheets() {
+  setSyncStatus('syncing', '讀取中...');
+  try {
+    const res = await fetch(SCRIPT_URL + '?action=load');
+    const data = await res.json();
+    if (data.success) {
+      goals = data.goals;
+      SECTIONS.forEach(s => { if (!goals[s]) goals[s] = []; });
+      saveLocalData();
+      setSyncStatus('ok', '已同步');
+      const now = new Date().toLocaleTimeString('zh-TW', {hour:'2-digit',minute:'2-digit'});
+      document.getElementById('lastSync').textContent = '最後同步：' + now;
+    } else {
+      throw new Error(data.error || 'load failed');
+    }
+  } catch(e) {
+    setSyncStatus('error', '離線模式');
+    loadLocalData();
+    showToast('⚠️ 無法連接 Sheets，使用本地資料');
+  }
+  hideLoading();
+  renderAll();
+}
+
+async function syncToSheets(skipToast) {
+  if (!SCRIPT_URL) { saveLocalData(); return; }
+  setSyncStatus('syncing', '同步中...');
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'save', goals }),
+      headers: { 'Content-Type': 'text/plain' }
+    });
+    setSyncStatus('ok', '已同步');
+    saveLocalData();
+    const now = new Date().toLocaleTimeString('zh-TW', {hour:'2-digit',minute:'2-digit'});
+    document.getElementById('lastSync').textContent = '最後同步：' + now;
+    if (!skipToast) showToast('✅ 已同步到 Google Sheets');
+  } catch(e) {
+    setSyncStatus('error', '同步失敗');
+    saveLocalData();
+    if (!skipToast) showToast('⚠️ 同步失敗，已儲存到本地');
+  }
+}
+
+// === ADD GOAL ===
+function addGoal(section) {
+  const inp = document.getElementById('input-' + section);
+  const name = inp.value.trim();
+  if (!name) return;
+
+  if (!goals[section]) goals[section] = [];
+  goals[section].push({
+    id: Date.now() + Math.random(),
+    name,
+    progress: 0,
+    completed: false,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  });
+
+  inp.value = '';
+  renderSection(section);
+  updateTodayItems();
+  syncToSheets(true);
+}
+
+// === UPDATE GOAL ===
+function updateGoal(section, id, changes) {
+  const g = goals[section]?.find(x => x.id === id);
+  if (!g) return;
+  Object.assign(g, changes, { updatedAt: new Date().toISOString() });
+  renderSection(section);
+  updateTodayItems();
+  syncToSheets(true);
+}
+
+// === DELETE GOAL ===
+function deleteGoal(section, id) {
+  goals[section] = goals[section].filter(x => x.id !== id);
+  renderSection(section);
+  updateTodayItems();
+  syncToSheets(true);
+}
+
+// === RENDER ALL ===
+function renderAll() {
+  SECTIONS.forEach(s => renderSection(s));
+  updateTodayItems();
+}
+
+function renderSection(section) {
+  const list = document.getElementById('list-' + section);
+  const sGoals = goals[section] || [];
+
+  const incomplete = sGoals.filter(g => !g.completed).sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+  const complete = sGoals.filter(g => g.completed).sort((a,b) => new Date(a.updatedAt) - new Date(b.updatedAt));
+
+  // Today picks
+  const todayPicks = getTodayPicks();
+
+  list.innerHTML = '';
+
+  if (incomplete.length === 0 && complete.length === 0) {
+    list.innerHTML = '<div class="empty-hint">新增你的第一個目標吧 🌸</div>';
+  } else {
+    incomplete.forEach(g => list.appendChild(buildGoalEl(section, g, todayPicks)));
+    if (complete.length > 0) {
+      const div = document.createElement('div');
+      div.className = 'divider-completed';
+      div.textContent = '已完成';
+      list.appendChild(div);
+      complete.forEach(g => list.appendChild(buildGoalEl(section, g, todayPicks)));
+    }
+  }
+
+  // Stats
+  const total = sGoals.length;
+  const done = complete.length;
+  const avgPct = total ? Math.round(sGoals.reduce((s,g) => s + g.progress, 0) / total) : 0;
+  document.getElementById('stats-' + section).textContent =
+    total + ' 個目標 · ' + done + '/' + total + ' 完成 · 平均 ' + avgPct + '%';
+  document.getElementById('strip-' + section).style.width = avgPct + '%';
+}
+
+function buildGoalEl(section, g, todayPicks) {
+  const isToday = todayPicks.some(p => p.id === g.id);
+  const isOverdue = !g.completed && isOldGoal(g);
+
+  const el = document.createElement('div');
+  el.className = 'goal-item' +
+    (g.completed ? ' completed' : '') +
+    (isToday && !g.completed ? ' today-highlight' : '') +
+    (isOverdue ? ' overdue' : '');
+  el.dataset.id = g.id;
+
+  const pct = Math.min(100, Math.max(0, parseInt(g.progress) || 0));
+
+  el.innerHTML = `
+    <div class="goal-row1">
+      <label class="goal-checkbox">
+        <input type="checkbox" ${g.completed ? 'checked' : ''}
+          onchange="updateGoal('${section}', ${g.id}, {completed: this.checked, progress: this.checked ? 100 : ${pct}})">
+        <div class="check-visual"></div>
+      </label>
+      <div class="goal-name">${escHtml(g.name)}</div>
+      <div class="goal-badges">
+        ${isToday && !g.completed ? '<span class="badge badge-today">今日</span>' : ''}
+        ${isOverdue ? '<span class="badge badge-overdue">久未更新</span>' : ''}
+        ${g.completed ? '<span class="badge badge-done">✓ 完成</span>' : ''}
+      </div>
+      <button class="delete-btn" onclick="deleteGoal('${section}', ${g.id})" title="刪除">✕</button>
+    </div>
+    <div class="goal-row2">
+      <div class="progress-track" onclick="handleProgressClick(event, '${section}', ${g.id})">
+        <div class="progress-fill" style="width:${pct}%"></div>
+      </div>
+      <input type="number" class="progress-input" value="${pct}" min="0" max="100"
+        onchange="updateGoal('${section}', ${g.id}, {progress: Math.min(100, Math.max(0, parseInt(this.value)||0))})"
+        onblur="updateGoal('${section}', ${g.id}, {progress: Math.min(100, Math.max(0, parseInt(this.value)||0))})">
+      <div class="progress-pct">${pct}%</div>
+      ${pct >= 100 && !g.completed ? '<div class="progress-done-hint">可完成了！</div>' : ''}
+    </div>
+  `;
+  return el;
+}
+
+function handleProgressClick(e, section, id) {
+  const track = e.currentTarget;
+  const rect = track.getBoundingClientRect();
+  const pct = Math.round((e.clientX - rect.left) / rect.width * 100);
+  updateGoal(section, id, { progress: Math.min(100, Math.max(0, pct)) });
+}
+
+function isOldGoal(g) {
+  const updated = new Date(g.updatedAt || g.createdAt);
+  return (Date.now() - updated.getTime()) > 7 * 24 * 60 * 60 * 1000;
+}
+
+// === TODAY 3 ITEMS ===
+function getTodayPicks() {
+  let picks = [];
+  try {
+    const stored = localStorage.getItem(TODAY_KEY);
+    if (stored) picks = JSON.parse(stored);
+  } catch(e) {}
+
+  // Validate picks still exist
+  const allGoals = SECTIONS.flatMap(s => (goals[s] || []).filter(g => !g.completed).map(g => ({...g, _section: s})));
+  picks = picks.filter(p => allGoals.some(g => g.id === p.id));
+
+  if (picks.length < 3 && allGoals.length > 0) {
+    // Fill up picks - prioritize overdue
+    const overdue = allGoals.filter(g => isOldGoal(g) && !picks.some(p => p.id === g.id));
+    const rest = allGoals.filter(g => !isOldGoal(g) && !picks.some(p => p.id === g.id));
+    const pool = [...overdue, ...rest];
+    // Shuffle rest
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    while (picks.length < 3 && pool.length > 0) {
+      picks.push(pool.shift());
+    }
+    localStorage.setItem(TODAY_KEY, JSON.stringify(picks));
+  }
+
+  return picks;
+}
+
+function updateTodayItems() {
+  const picks = getTodayPicks();
+  const container = document.getElementById('todayItems');
+  if (picks.length === 0) {
+    container.innerHTML = '<div style="font-size:13px;color:var(--text-light);font-style:italic;">太棒了！所有目標都完成了 🎉</div>';
+    return;
+  }
+  container.innerHTML = picks.map(p =>
+    `<div class="today-item"><div class="dot"></div><span>${escHtml(p.name)}</span></div>`
+  ).join('');
+}
+
+// === BACKUP ===
+async function checkAutoBackup() {
+  if (!SCRIPT_URL) return;
+  const now = new Date();
+  const key = 'v2026_last_backup';
+  const last = localStorage.getItem(key);
+  const thisMonth = now.getFullYear() + '-' + (now.getMonth() + 1);
+  if (last !== thisMonth) {
+    await doBackup();
+    localStorage.setItem(key, thisMonth);
+  }
+}
+
+async function manualBackup() {
+  if (!SCRIPT_URL) { showToast('⚠️ 請先設定 Google Sheets URL'); return; }
+  showToast('📦 備份中...');
+  await doBackup();
+}
+
+async function doBackup() {
+  try {
+    const now = new Date();
+    const monthName = now.getFullYear() + '年' + (now.getMonth() + 1) + '月';
+    const res = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'backup', goals, monthName }),
+      headers: { 'Content-Type': 'text/plain' }
+    });
+    const data = await res.json();
+    if (data.success) showToast('✅ 備份成功：' + monthName + ' 分頁');
+    else showToast('⚠️ 備份失敗');
+  } catch(e) {
+    showToast('⚠️ 備份失敗');
+  }
+}
+
+// === HELPERS ===
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function showToast(msg, dur=3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), dur);
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+</script>
+</body>
+</html>
