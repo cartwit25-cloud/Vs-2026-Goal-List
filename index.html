@@ -6,123 +6,685 @@
   <title>V's 2026 Goal List ✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,600;0,9..40,700;1,9..40,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Sans:opsz,wght@9..40,300;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+<style>
+/* =====================================================
+   V's 2026 Goal List — 清爽霧藍薄荷系
+===================================================== */
+:root {
+  --cream:      #f2f6f8;
+  --cream-2:    #e8eef2;
+  --mist:       #d8e8f0;
+  --mist-mid:   #a0c0d4;
+  --mist-dark:  #4a84a8;
+  --mint:       #d4eae4;
+  --mint-mid:   #7bbcac;
+  --mint-dark:  #2e8a78;
+  --fog:        #e4eaee;
+  --fog-mid:    #a8b8c4;
+  --fog-dark:   #5a7080;
+  --steel:      #dce4ec;
+  --steel-mid:  #96afc4;
+  --steel-dark: #3e6480;
+  --slate:      #e0e8f0;
+  --slate-mid:  #a0b4c8;
+  --slate-dark: #486078;
+  --text-900: #1a2830;
+  --text-600: #4a6070;
+  --text-400: #88a0b0;
+  --text-200: #c4d4de;
+  --white: #ffffff;
+  --shadow: rgba(40,80,110,.10);
+  --r-sm: 10px; --r-md: 18px; --r-lg: 26px; --r-xl: 36px; --r-pill: 999px;
+  --ease: cubic-bezier(.4,0,.2,1);
+  --t-fast: 180ms; --t-mid: 320ms; --t-slow: 500ms;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--cream);color:var(--text-900);min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;font-family:inherit}
+input,select{font-family:inherit}
+
+/* bg blobs */
+.bg-deco{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.deco-blob{position:absolute;border-radius:50%;filter:blur(72px);opacity:.25;animation:blobDrift 18s ease-in-out infinite}
+.b1{width:520px;height:520px;background:var(--mist);top:-160px;left:-120px;animation-duration:20s}
+.b2{width:380px;height:380px;background:var(--mint);top:42%;right:-80px;animation-duration:16s;animation-delay:-6s}
+.b3{width:300px;height:300px;background:var(--slate);bottom:-80px;left:25%;animation-duration:22s;animation-delay:-11s}
+@keyframes blobDrift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(24px,-18px) scale(1.06)}66%{transform:translate(-18px,22px) scale(.94)}}
+
+/* ---- Setup Overlay ---- */
+.setup-overlay{position:fixed;inset:0;z-index:9000;background:linear-gradient(145deg,#eaf2f8 0%,#eaf4f0 100%);align-items:center;justify-content:center;padding:24px;display:none}
+.setup-overlay.visible{display:flex}
+.setup-card{background:var(--white);border-radius:var(--r-xl);padding:48px 44px 40px;max-width:480px;width:100%;box-shadow:0 12px 48px rgba(40,90,130,.12);display:flex;flex-direction:column;align-items:center;gap:14px;animation:cardRise .5s var(--ease) both}
+@keyframes cardRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.setup-icon{font-size:3rem;line-height:1;animation:iconBounce 2.5s ease-in-out infinite}
+@keyframes iconBounce{0%,100%{transform:scale(1) rotate(-4deg)}50%{transform:scale(1.12) rotate(4deg)}}
+.setup-title{font-family:'DM Sans',sans-serif;font-size:2rem;font-weight:700;letter-spacing:-.04em;background:linear-gradient(120deg,var(--mist-dark),var(--mint-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-align:center}
+.setup-desc{font-size:.88rem;color:var(--text-600);text-align:center;line-height:1.7}
+.setup-error{width:100%;font-size:.82rem;color:#c03;background:#fff0f0;border-radius:var(--r-sm);padding:8px 14px;text-align:center;display:none}
+.setup-error.show{display:block}
+.setup-help-link{font-size:.8rem;color:var(--mist-dark);text-decoration:underline;margin-top:2px}
+.setup-help-link:hover{color:var(--mint-dark)}
+
+/* ---- Fields ---- */
+.field-label{display:block;font-size:.8rem;font-weight:600;color:var(--text-600);margin-bottom:4px;width:100%}
+.field-input{width:100%;padding:11px 16px;border:1.5px solid var(--text-200);border-radius:var(--r-md);font-size:.9rem;color:var(--text-900);outline:none;background:var(--cream);transition:border-color var(--t-fast) var(--ease)}
+.field-input:focus{border-color:var(--mist-dark);box-shadow:0 0 0 3px rgba(74,132,168,.13)}
+.field-input::placeholder{color:var(--text-400)}
+
+/* ---- Buttons ---- */
+.btn-primary{width:100%;padding:13px 24px;background:linear-gradient(135deg,var(--mist-dark),var(--mint-dark));color:var(--white);border:none;border-radius:var(--r-pill);font-size:.95rem;font-weight:700;box-shadow:0 4px 18px rgba(40,100,140,.28);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(40,100,140,.36)}
+.btn-primary:active{transform:translateY(0)}
+.btn-ghost{padding:11px 22px;background:var(--cream-2);border:1.5px solid var(--text-200);border-radius:var(--r-pill);font-size:.9rem;color:var(--text-600);transition:background var(--t-fast) var(--ease)}
+.btn-ghost:hover{background:var(--mist)}
+.btn-icon{background:var(--white);border:1.5px solid var(--text-200);border-radius:var(--r-pill);padding:6px 12px;font-size:.95rem;color:var(--text-600);transition:all var(--t-fast) var(--ease);box-shadow:0 2px 8px var(--shadow)}
+.btn-icon:hover{background:var(--mist);border-color:var(--mist-mid)}
+
+/* ---- App ---- */
+.app{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:28px 20px 72px}
+
+/* ---- Header ---- */
+.site-header{margin-bottom:32px;display:flex;flex-direction:column;gap:16px}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.header-brand{display:flex;align-items:center;gap:10px}
+.brand-flower{font-size:2rem;animation:iconBounce 3s ease-in-out infinite}
+.brand-title{font-family:'DM Sans',sans-serif;font-size:clamp(1.7rem,4vw,2.8rem);font-weight:700;letter-spacing:-.05em;background:linear-gradient(120deg,var(--mist-dark) 10%,var(--steel-dark) 50%,var(--mint-dark) 90%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-controls{display:flex;align-items:center;gap:10px}
+
+/* sync badge */
+.sync-badge{display:flex;align-items:center;gap:6px;background:var(--white);border-radius:var(--r-pill);padding:5px 14px;font-size:.8rem;color:var(--text-600);box-shadow:0 2px 8px var(--shadow)}
+.sync-dot{width:8px;height:8px;border-radius:50%;background:var(--text-200);transition:background var(--t-mid) var(--ease)}
+.sync-badge[data-state="ok"]      .sync-dot{background:var(--mint-dark);animation:pulseGlow 2s infinite}
+.sync-badge[data-state="syncing"] .sync-dot{background:var(--fog-dark);animation:pulseGlow .8s infinite}
+.sync-badge[data-state="error"]   .sync-dot{background:#e05}
+@keyframes pulseGlow{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+
+/* stats */
+.stats-row{display:flex;align-items:center;background:var(--white);border-radius:var(--r-lg);padding:14px 28px;box-shadow:0 4px 18px var(--shadow);width:fit-content}
+.stat-item{display:flex;flex-direction:column;align-items:center;gap:2px;padding:0 20px}
+.stat-val{font-family:'DM Sans',sans-serif;font-size:1.9rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--mist-dark),var(--mint-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-key{font-size:.75rem;color:var(--text-400)}
+.stat-divider{width:1px;height:36px;background:var(--text-200)}
+
+/* today strip */
+.today-strip{background:linear-gradient(135deg,#eef5fa 0%,#e8f4f0 100%);border:1.5px solid rgba(74,132,168,.2);border-radius:var(--r-lg);padding:16px 22px;box-shadow:0 2px 12px var(--shadow);animation:fadeDown .4s var(--ease) both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.today-heading{display:flex;align-items:center;gap:8px;font-size:.88rem;margin-bottom:10px;color:var(--text-900)}
+.today-sub{font-size:.76rem;color:var(--text-400);font-weight:400;margin-left:2px}
+.today-chips{display:flex;gap:8px;flex-wrap:wrap}
+.today-chip{display:flex;align-items:center;gap:6px;background:var(--white);border-radius:var(--r-pill);padding:6px 14px;font-size:.82rem;color:var(--text-900);box-shadow:0 2px 8px var(--shadow);border-left:3px solid var(--mist-dark);animation:chipPop .35s var(--ease) both}
+.today-chip:nth-child(2){border-color:var(--mint-dark)}
+.today-chip:nth-child(3){border-color:var(--fog-dark)}
+@keyframes chipPop{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.chip-cat{font-size:.7rem;color:var(--text-400)}
+
+/* ---- Sections Grid ---- */
+.sections-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(max-width:768px){.sections-grid{grid-template-columns:1fr}}
+
+.sec-card{background:var(--white);border-radius:var(--r-xl);overflow:hidden;box-shadow:0 4px 24px var(--shadow);display:flex;flex-direction:column;transition:box-shadow var(--t-mid) var(--ease);animation:cardRise .5s var(--ease) both}
+.sec-card:hover{box-shadow:0 8px 36px rgba(40,80,110,.18)}
+
+/* section colour themes */
+.sec-card[data-cat="工作"]{--sec-accent:var(--mist-dark);--sec-h-from:#b4cede;--sec-h-to:#88b0cc}
+.sec-card[data-cat="成長"]{--sec-accent:var(--mint-dark);--sec-h-from:#b0d8cc;--sec-h-to:#7abcac}
+.sec-card[data-cat="家庭"]{--sec-accent:var(--fog-dark); --sec-h-from:#c4d4de;--sec-h-to:#96b0c0}
+.sec-card[data-cat="健康"]{--sec-accent:var(--steel-dark);--sec-h-from:#aec8dc;--sec-h-to:#7aa8c4}
+
+.sec-header{background:linear-gradient(135deg,var(--sec-h-from),var(--sec-h-to));padding:18px 20px 14px;display:flex;align-items:center;justify-content:space-between}
+.sec-header-left{display:flex;align-items:center;gap:10px}
+.sec-emoji{font-size:1.5rem}
+.sec-name{font-size:1.05rem;font-weight:700;color:var(--white);text-shadow:0 1px 4px rgba(0,0,0,.12)}
+.sec-rate{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.9);background:rgba(255,255,255,.28);border-radius:var(--r-pill);padding:3px 11px}
+
+/* add bar */
+.add-bar{padding:12px 16px;background:var(--cream);border-bottom:1.5px solid rgba(40,80,110,.06);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.add-input{flex:1;min-width:130px;padding:8px 14px;font-size:.86rem;border:1.5px solid var(--text-200);border-radius:var(--r-pill);background:var(--white);color:var(--text-900);outline:none;transition:border-color var(--t-fast) var(--ease)}
+.add-input:focus{border-color:var(--sec-accent);box-shadow:0 0 0 3px rgba(40,80,110,.08)}
+.add-input::placeholder{color:var(--text-400)}
+.pri-select{padding:8px 10px;font-size:.8rem;border:1.5px solid var(--text-200);border-radius:var(--r-pill);background:var(--white);color:var(--text-900);outline:none;cursor:pointer;transition:border-color var(--t-fast) var(--ease)}
+.pri-select:focus{border-color:var(--sec-accent)}
+.btn-add{padding:8px 18px;font-size:.86rem;font-weight:700;background:var(--sec-accent);color:var(--white);border:none;border-radius:var(--r-pill);box-shadow:0 2px 10px rgba(40,80,110,.2);transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease);white-space:nowrap}
+.btn-add:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(40,80,110,.28)}
+.btn-add:active{transform:translateY(0)}
+
+/* goal list */
+.goal-list{padding:12px 14px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+.goal-list:empty::after{content:'還沒有目標，加一個吧 🌱';display:block;text-align:center;font-size:.83rem;color:var(--text-400);padding:22px 0}
+
+/* ---- Goal Card ---- */
+.goal-card{background:var(--white);border:1.5px solid rgba(40,80,110,.08);border-radius:var(--r-md);padding:12px 14px;position:relative;overflow:hidden;transition:transform var(--t-fast) var(--ease),box-shadow var(--t-fast) var(--ease),opacity var(--t-slow) var(--ease);animation:cardSlideIn .3s var(--ease) both}
+@keyframes cardSlideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+.goal-card:hover{transform:translateX(4px);box-shadow:0 3px 14px var(--shadow)}
+.goal-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px}
+.goal-card[data-pri="高"]::before{background:#4a7eb0}
+.goal-card[data-pri="中"]::before{background:var(--fog-dark)}
+.goal-card[data-pri="低"]::before{background:var(--mint-dark)}
+.goal-card.is-done{opacity:.62;background:#f7f9fa}
+.goal-card.is-done .goal-name{text-decoration:line-through;color:var(--text-400)}
+.goal-card.is-stale{background:#f6fafb;border-color:rgba(74,132,168,.22)}
+.stale-badge{position:absolute;top:8px;right:10px;font-size:.68rem;color:var(--mist-dark);background:rgba(74,132,168,.08);border-radius:var(--r-pill);padding:2px 8px;pointer-events:none}
+.goal-card.is-today{background:linear-gradient(135deg,#eef6fa 0%,#e8f5f0 100%);border-color:rgba(74,132,168,.25)}
+.goal-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+
+/* checkbox */
+.cb-wrap{flex-shrink:0;padding-top:1px}
+.cb-input{display:none}
+.cb-visual{width:21px;height:21px;border-radius:6px;border:2px solid var(--text-200);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--t-mid) var(--ease);position:relative;overflow:hidden}
+.cb-visual::after{content:'✓';font-size:12px;font-weight:700;color:var(--white);opacity:0;transform:scale(.4);transition:all var(--t-mid) var(--ease)}
+.cb-input:checked + .cb-visual{background:linear-gradient(135deg,var(--mist-dark),var(--mint-dark));border-color:transparent;animation:checkBounce .4s var(--ease)}
+.cb-input:checked + .cb-visual::after{opacity:1;transform:scale(1)}
+@keyframes checkBounce{0%{transform:scale(1)}40%{transform:scale(1.28)}70%{transform:scale(.9)}100%{transform:scale(1)}}
+
+/* goal info */
+.goal-info{flex:1;min-width:0}
+.goal-name{font-size:.9rem;font-weight:500;color:var(--text-900);line-height:1.45;word-break:break-word;transition:color var(--t-mid) var(--ease)}
+.goal-meta{display:flex;align-items:center;gap:6px;margin-top:3px;flex-wrap:wrap}
+.pri-badge{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:var(--r-pill)}
+.pri-badge.高{background:rgba(60,100,160,.1);color:#2e5c9a}
+.pri-badge.中{background:rgba(80,110,130,.1);color:#3a6070}
+.pri-badge.低{background:rgba(46,138,120,.1);color:#2a7868}
+.goal-date{font-size:.7rem;color:var(--text-400)}
+.btn-del{flex-shrink:0;background:none;border:none;font-size:.9rem;color:var(--text-200);padding:2px 5px;border-radius:6px;opacity:0;transition:all var(--t-fast) var(--ease)}
+.goal-card:hover .btn-del{opacity:1}
+.btn-del:hover{color:#e05;background:rgba(220,0,0,.07)}
+
+/* progress */
+.prog-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.prog-lbl{font-size:.72rem;color:var(--text-400)}
+.prog-pct{font-size:.8rem;font-weight:700;color:var(--sec-accent);min-width:36px;text-align:right;transition:color var(--t-mid) var(--ease)}
+.prog-track{width:100%;height:6px;background:var(--cream-2);border-radius:var(--r-pill);overflow:hidden;margin-bottom:5px}
+.prog-fill{height:100%;border-radius:var(--r-pill);background:linear-gradient(90deg,var(--sec-accent),var(--slate-mid));transition:width .5s var(--ease);position:relative}
+.prog-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shimmer 2.2s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.prog-slider{width:100%;-webkit-appearance:none;height:3px;background:transparent;outline:none;cursor:pointer}
+.prog-slider::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--sec-accent);cursor:pointer;box-shadow:0 2px 6px rgba(40,80,110,.3);transition:transform var(--t-fast) var(--ease)}
+.prog-slider::-webkit-slider-thumb:hover{transform:scale(1.3)}
+.prog-slider::-moz-range-thumb{width:16px;height:16px;border-radius:50%;border:none;background:var(--sec-accent);cursor:pointer}
+.complete-tip{font-size:.74rem;color:var(--mint-dark);text-align:center;margin-top:4px;display:none;animation:fadeDown .3s var(--ease)}
+.complete-tip.show{display:block}
+.goal-card.moving-out{opacity:0;transform:translateX(18px) scale(.96);transition:opacity var(--t-slow) var(--ease),transform var(--t-slow) var(--ease)}
+
+/* ---- Modal ---- */
+.modal-backdrop{position:fixed;inset:0;z-index:8000;background:rgba(20,50,70,.32);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:24px}
+.modal-box{background:var(--white);border-radius:var(--r-xl);padding:36px 32px;max-width:460px;width:100%;box-shadow:0 16px 56px rgba(20,60,90,.16);position:relative;animation:cardRise .4s var(--ease) both;display:flex;flex-direction:column;gap:12px}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1rem;color:var(--text-400);padding:4px 8px;border-radius:8px;transition:all var(--t-fast) var(--ease)}
+.modal-close:hover{background:var(--cream-2);color:var(--text-900)}
+.modal-title{font-family:'DM Sans',sans-serif;font-size:1.4rem;font-weight:700;letter-spacing:-.03em}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end}
+.modal-actions .btn-primary{width:auto;padding:11px 28px}
+
+/* ---- Toast ---- */
+.toasts{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--white);border-radius:var(--r-md);padding:11px 18px;font-size:.86rem;color:var(--text-900);box-shadow:0 4px 24px rgba(30,70,100,.13);display:flex;align-items:center;gap:8px;border-left:4px solid var(--mist-dark);max-width:300px;animation:toastIn .3s var(--ease) both}
+.toast.ok{border-color:var(--mint-dark)}
+.toast.error{border-color:#e05}
+.toast.info{border-color:var(--fog-dark)}
+@keyframes toastIn{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(32px)}}
+
+/* loading bar */
+#loadingBar{position:fixed;top:0;left:0;right:0;height:3px;z-index:99999;background:linear-gradient(90deg,var(--mist-dark),var(--mint-dark),var(--steel-dark));transform-origin:left;display:none}
+#loadingBar.on{display:block;animation:loadBar 1.4s ease-in-out infinite}
+@keyframes loadBar{0%{transform:scaleX(0);opacity:1}80%{transform:scaleX(.85);opacity:1}100%{transform:scaleX(1);opacity:0}}
+
+/* responsive */
+@media(max-width:600px){
+  .app{padding:18px 14px 52px}
+  .stats-row{padding:12px 16px}
+  .stat-item{padding:0 12px}
+  .stat-val{font-size:1.5rem}
+  .add-bar{flex-direction:column}
+  .add-input,.btn-add{width:100%}
+  .modal-box{padding:28px 22px}
+  .setup-card{padding:36px 24px 30px}
+}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(74,132,168,.25);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:rgba(74,132,168,.45)}
+</style>
 </head>
 <body>
 
-  <!-- 浮動裝飾泡泡 -->
-  <div class="bg-deco" aria-hidden="true">
-    <span class="deco-blob b1"></span>
-    <span class="deco-blob b2"></span>
-    <span class="deco-blob b3"></span>
+<div class="bg-deco" aria-hidden="true">
+  <span class="deco-blob b1"></span>
+  <span class="deco-blob b2"></span>
+  <span class="deco-blob b3"></span>
+</div>
+
+<!-- 設定頁（未連線時顯示） -->
+<div class="setup-overlay visible" id="setupOverlay">
+  <div class="setup-card">
+    <div class="setup-icon">🌸</div>
+    <h1 class="setup-title">V's 2026 Goal List</h1>
+    <p class="setup-desc">在開始之前，請先設定 Google Sheets Web App URL，<br/>資料才能正確儲存與讀取。</p>
+    <label class="field-label" for="setupUrl">Apps Script Web App URL</label>
+    <input type="url" id="setupUrl" class="field-input" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" />
+    <div id="setupError" class="setup-error"></div>
+    <button class="btn-primary" id="btnSetupSave">連線並開始使用 →</button>
+    <a class="setup-help-link" href="https://github.com/你的帳號/你的repo/blob/main/README.md" target="_blank">📖 如何取得 URL？看教學</a>
   </div>
+</div>
 
-  <!-- ====== 設定遮罩：未設定時強制顯示 ====== -->
-  <div class="setup-overlay" id="setupOverlay">
-    <div class="setup-card">
-      <div class="setup-icon">🌸</div>
-      <h1 class="setup-title">V's 2026 Goal List</h1>
-      <p class="setup-desc">
-        在開始之前，請先設定 Google Sheets Web App URL，<br />
-        資料才能正確儲存與讀取。
-      </p>
-      <label class="field-label" for="setupUrl">Apps Script Web App URL</label>
-      <input
-        type="url"
-        id="setupUrl"
-        class="field-input"
-        placeholder="https://script.google.com/macros/s/…/exec"
-        autocomplete="off"
-      />
-      <div id="setupError" class="setup-error" hidden></div>
-      <button class="btn-primary" id="btnSetupSave">連線並開始使用 →</button>
-      <a class="setup-help-link" href="README.md" target="_blank">📖 如何取得 URL？看教學</a>
-    </div>
-  </div>
-
-  <!-- ====== 主應用 ====== -->
-  <div class="app" id="app" hidden>
-
-    <!-- 頂部 Header -->
-    <header class="site-header">
-      <div class="header-top">
-        <div class="header-brand">
-          <span class="brand-flower">🌸</span>
-          <h1 class="brand-title">V's 2026 Goal List</h1>
-        </div>
-        <div class="header-controls">
-          <div class="sync-badge" id="syncBadge" data-state="idle">
-            <span class="sync-dot"></span>
-            <span class="sync-label" id="syncLabel">已連線</span>
-          </div>
-          <button class="btn-icon" id="btnOpenConfig" title="重新設定連線">⚙️</button>
-        </div>
+<!-- 主應用 -->
+<div class="app" id="app" style="display:none">
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-brand">
+        <span class="brand-flower">🌸</span>
+        <h1 class="brand-title">V's 2026 Goal List</h1>
       </div>
-
-      <!-- 整體統計 -->
-      <div class="stats-row">
-        <div class="stat-item">
-          <span class="stat-val" id="statTotal">0</span>
-          <span class="stat-key">總目標</span>
+      <div class="header-controls">
+        <div class="sync-badge" id="syncBadge" data-state="idle">
+          <span class="sync-dot"></span>
+          <span id="syncLabel">未連線</span>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-val" id="statDone">0</span>
-          <span class="stat-key">已完成</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-val" id="statRate">0%</span>
-          <span class="stat-key">完成率</span>
-        </div>
-      </div>
-
-      <!-- 今日3件事 -->
-      <div class="today-strip" id="todayStrip" hidden>
-        <div class="today-heading">
-          <span>🎯</span>
-          <strong>今日建議</strong>
-          <span class="today-sub">隨機推薦，輕鬆看看就好</span>
-        </div>
-        <div class="today-chips" id="todayChips"></div>
-      </div>
-    </header>
-
-    <!-- 四大區塊 Grid -->
-    <main class="sections-grid" id="sectionsGrid">
-      <!-- 動態產生 -->
-    </main>
-
-  </div>
-
-  <!-- ====== 重新設定彈窗 ====== -->
-  <div class="modal-backdrop" id="configModal" hidden>
-    <div class="modal-box">
-      <button class="modal-close" id="btnCloseConfig">✕</button>
-      <h2 class="modal-title">⚙️ 重新設定連線</h2>
-      <label class="field-label" for="configUrl">Apps Script Web App URL</label>
-      <input
-        type="url"
-        id="configUrl"
-        class="field-input"
-        placeholder="https://script.google.com/macros/s/…/exec"
-        autocomplete="off"
-      />
-      <div id="configError" class="setup-error" hidden></div>
-      <div class="modal-actions">
-        <button class="btn-ghost" id="btnCancelConfig">取消</button>
-        <button class="btn-primary" id="btnSaveConfig">儲存</button>
+        <button class="btn-icon" id="btnOpenConfig" title="重新設定連線">⚙️</button>
       </div>
     </div>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-val" id="statTotal">0</span><span class="stat-key">總目標</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-val" id="statDone">0</span><span class="stat-key">已完成</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><span class="stat-val" id="statRate">0%</span><span class="stat-key">完成率</span></div>
+    </div>
+    <div class="today-strip" id="todayStrip" style="display:none">
+      <div class="today-heading"><span>🎯</span><strong>今日建議</strong><span class="today-sub">隨機推薦，輕鬆看看就好</span></div>
+      <div class="today-chips" id="todayChips"></div>
+    </div>
+  </header>
+  <main class="sections-grid" id="sectionsGrid"></main>
+</div>
+
+<!-- 重新設定 Modal -->
+<div class="modal-backdrop" id="configModal" style="display:none">
+  <div class="modal-box">
+    <button class="modal-close" id="btnCloseConfig">✕</button>
+    <h2 class="modal-title">⚙️ 重新設定連線</h2>
+    <label class="field-label" for="configUrl">Apps Script Web App URL</label>
+    <input type="url" id="configUrl" class="field-input" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off" />
+    <div id="configError" class="setup-error"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="btnCancelConfig">取消</button>
+      <button class="btn-primary" id="btnSaveConfig">儲存</button>
+    </div>
   </div>
+</div>
 
-  <!-- Toast 通知 -->
-  <div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
 
-  <script src="js/store.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/render.js"></script>
-  <script src="js/app.js"></script>
+<script>
+// ===================== store.js =====================
+const STORE_KEY      = 'v2026_goals';
+const URL_KEY        = 'v2026_url';
+const TODAY_KEY      = 'v2026_today';
+const TODAY_DATE_KEY = 'v2026_today_date';
+const CATEGORIES = ['工作','成長','家庭','健康'];
+const CAT_EMOJI  = {'工作':'💼','成長':'🌱','家庭':'🏠','健康':'🏃'};
+const STALE_DAYS = 7;
+
+function getUrl()     { return localStorage.getItem(URL_KEY) || ''; }
+function saveUrl(u)   { localStorage.setItem(URL_KEY, u.trim()); }
+
+function loadGoals()  { try { return JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); } catch { return []; } }
+function saveGoals(g) { localStorage.setItem(STORE_KEY, JSON.stringify(g)); }
+
+function genId()  { return 'g_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); }
+function nowIso() { return new Date().toISOString(); }
+
+function isStale(goal) {
+  if (goal.completed) return false;
+  const ref = goal.updated_at || goal.created_at;
+  if (!ref) return false;
+  return (Date.now() - new Date(ref)) / 86400000 >= STALE_DAYS;
+}
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso); if (isNaN(d)) return '';
+  const diff = Math.floor((Date.now() - d) / 86400000);
+  if (diff === 0) return '今天'; if (diff === 1) return '昨天';
+  if (diff < 7) return diff + '天前';
+  return d.toLocaleDateString('zh-TW', {month:'numeric',day:'numeric'});
+}
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s||''; return d.innerHTML; }
+
+function getTodayPicks(goals) {
+  const today = new Date().toDateString();
+  const savedDate = localStorage.getItem(TODAY_DATE_KEY);
+  const savedIds  = JSON.parse(localStorage.getItem(TODAY_KEY) || '[]');
+  const activeIds = goals.filter(g => !g.completed).map(g => g.id);
+  if (savedDate === today) {
+    const valid = savedIds.filter(id => activeIds.includes(id));
+    if (valid.length === Math.min(3, activeIds.length)) return valid;
+  }
+  const picks = [...activeIds].sort(() => Math.random() - .5).slice(0, 3);
+  localStorage.setItem(TODAY_KEY, JSON.stringify(picks));
+  localStorage.setItem(TODAY_DATE_KEY, today);
+  return picks;
+}
+
+// ===================== api.js =====================
+const API = {
+  async pingUrl(url) {
+    const res = await fetch(url + '?action=ping');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.message || 'ping failed');
+    return true;
+  },
+  async getAll() {
+    const res = await fetch(getUrl() + '?action=getAll');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.message);
+    return json.goals || [];
+  },
+  async add(goal)   { return this._post({action:'add', goal}); },
+  async update(goal){ return this._post({action:'update', goal}); },
+  async del(id)     { return this._post({action:'delete', id}); },
+  async _post(body) {
+    const res = await fetch(getUrl(), {
+      method:'POST',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (!json.ok) throw new Error(json.message || 'server error');
+    return json;
+  }
+};
+
+// ===================== render.js =====================
+function setLoading(on) {
+  let bar = document.getElementById('loadingBar');
+  if (!bar) { bar = document.createElement('div'); bar.id = 'loadingBar'; document.body.prepend(bar); }
+  bar.classList.toggle('on', on);
+}
+function setSyncState(state) {
+  const badge = document.getElementById('syncBadge');
+  const label = document.getElementById('syncLabel');
+  badge.dataset.state = state;
+  label.textContent = {ok:'已連線',syncing:'同步中…',error:'同步失敗',idle:'未連線'}[state] || state;
+}
+function toast(msg, type='default', ms=2800) {
+  const box = document.getElementById('toasts');
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.innerHTML = `<span>${{ok:'✅',error:'❌',info:'ℹ️',default:'🌸'}[type]||'🌸'}</span><span>${msg}</span>`;
+  box.appendChild(el);
+  setTimeout(() => { el.style.animation='toastOut .3s ease forwards'; el.addEventListener('animationend',()=>el.remove(),{once:true}); }, ms);
+}
+function renderStats(goals) {
+  const total = goals.length, done = goals.filter(g=>g.completed).length;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statDone').textContent  = done;
+  document.getElementById('statRate').textContent  = total===0?'0%':Math.round(done/total*100)+'%';
+}
+function renderToday(goals, todayIds) {
+  const strip = document.getElementById('todayStrip');
+  const chips = document.getElementById('todayChips');
+  const picks = goals.filter(g => todayIds.includes(g.id) && !g.completed);
+  chips.innerHTML = '';
+  strip.style.display = picks.length === 0 ? 'none' : '';
+  picks.forEach(g => {
+    const chip = document.createElement('div');
+    chip.className = 'today-chip';
+    chip.innerHTML = `<span class="chip-cat">${CAT_EMOJI[g.category]} ${g.category}</span><span>${escHtml(g.title)}</span>`;
+    chips.appendChild(chip);
+  });
+}
+function buildSections() {
+  const grid = document.getElementById('sectionsGrid');
+  grid.innerHTML = '';
+  CATEGORIES.forEach((cat, i) => {
+    const card = document.createElement('div');
+    card.className = 'sec-card'; card.dataset.cat = cat;
+    card.style.animationDelay = (i*80)+'ms';
+    card.innerHTML = `
+      <div class="sec-header">
+        <div class="sec-header-left">
+          <span class="sec-emoji">${CAT_EMOJI[cat]}</span>
+          <span class="sec-name">${cat}</span>
+        </div>
+        <span class="sec-rate" id="rate-${cat}">0 / 0</span>
+      </div>
+      <div class="add-bar">
+        <input type="text" class="add-input" data-cat="${cat}" placeholder="輸入新目標…" />
+        <select class="pri-select" data-cat="${cat}">
+          <option value="高">🔴 高</option>
+          <option value="中" selected>🟡 中</option>
+          <option value="低">🟢 低</option>
+        </select>
+        <button class="btn-add" data-cat="${cat}">＋ 新增</button>
+      </div>
+      <div class="goal-list" id="list-${cat}"></div>`;
+    grid.appendChild(card);
+  });
+}
+function renderSection(cat, goals, todayIds) {
+  const list = document.getElementById('list-'+cat);
+  const rateEl = document.getElementById('rate-'+cat);
+  const catGoals = goals.filter(g => g.category===cat);
+  const active = catGoals.filter(g=>!g.completed).sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+  const done   = catGoals.filter(g=>g.completed);
+  list.innerHTML = '';
+  [...active,...done].forEach(g => list.appendChild(buildGoalCard(g, todayIds)));
+  rateEl.textContent = `${done.length} / ${catGoals.length}`;
+}
+function buildGoalCard(goal, todayIds) {
+  const prog = Math.min(100, Math.max(0, Number(goal.progress)||0));
+  const card = document.createElement('div');
+  card.className = 'goal-card'; card.dataset.id = goal.id; card.dataset.pri = goal.priority||'中';
+  if (goal.completed) card.classList.add('is-done');
+  if (isStale(goal))  card.classList.add('is-stale');
+  if (todayIds.includes(goal.id) && !goal.completed) card.classList.add('is-today');
+  card.innerHTML = `
+    ${isStale(goal)?'<span class="stale-badge">⏰ 7天未更新</span>':''}
+    <div class="goal-top">
+      <div class="cb-wrap">
+        <input type="checkbox" class="cb-input" id="cb-${goal.id}" ${goal.completed?'checked':''} />
+        <label class="cb-visual" for="cb-${goal.id}"></label>
+      </div>
+      <div class="goal-info">
+        <div class="goal-name">${escHtml(goal.title)}</div>
+        <div class="goal-meta">
+          <span class="pri-badge ${goal.priority||'中'}">${goal.priority||'中'}</span>
+          <span class="goal-date">${fmtDate(goal.created_at)}</span>
+        </div>
+      </div>
+      <button class="btn-del" data-id="${goal.id}" title="刪除">✕</button>
+    </div>
+    <div class="goal-prog">
+      <div class="prog-top">
+        <span class="prog-lbl">進度</span>
+        <span class="prog-pct" id="pct-${goal.id}">${prog}%</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="fill-${goal.id}" style="width:${prog}%"></div></div>
+      <input type="range" min="0" max="100" value="${prog}" class="prog-slider" data-id="${goal.id}" />
+      <div class="complete-tip ${prog>=100?'show':''}" id="tip-${goal.id}">🎉 太棒了！可以勾選完成囉！</div>
+    </div>`;
+  return card;
+}
+function updateProgUI(id, val) {
+  const fill=document.getElementById('fill-'+id), pct=document.getElementById('pct-'+id), tip=document.getElementById('tip-'+id);
+  if(fill) fill.style.width=val+'%';
+  if(pct)  pct.textContent=val+'%';
+  if(tip)  tip.classList.toggle('show', val>=100);
+}
+function animateCardMove(id, cb) {
+  const card = document.querySelector(`.goal-card[data-id="${id}"]`);
+  if (!card) { cb(); return; }
+  card.classList.add('moving-out');
+  card.addEventListener('transitionend', cb, {once:true});
+  setTimeout(cb, 600);
+}
+
+// ===================== app.js =====================
+let goals = [], todayIds = [], sliderTimer = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (getUrl()) { showApp(); } else { /* overlay already visible */ }
+  bindSetup();
+  bindConfig();
+});
+
+function showApp() {
+  document.getElementById('setupOverlay').style.display = 'none';
+  document.getElementById('app').style.display = '';
+  buildSections();
+  bindAppEvents();
+  loadAll();
+}
+
+async function loadAll() {
+  setLoading(true); setSyncState('syncing');
+  try {
+    goals = await API.getAll();
+    saveGoals(goals); setSyncState('ok');
+  } catch(e) {
+    console.error(e); setSyncState('error');
+    toast('載入失敗：' + e.message, 'error');
+    goals = loadGoals();
+  }
+  todayIds = getTodayPicks(goals);
+  renderAll(); setLoading(false);
+}
+
+function renderAll() {
+  CATEGORIES.forEach(cat => renderSection(cat, goals, todayIds));
+  renderStats(goals);
+  renderToday(goals, todayIds);
+}
+
+async function addGoal(cat, title, priority) {
+  const t = title.trim();
+  if (!t) { toast('請輸入目標名稱 🌸','info'); return; }
+  const goal = {id:genId(),category:cat,title:t,progress:0,completed:false,priority:priority||'中',created_at:nowIso(),updated_at:nowIso()};
+  goals.push(goal); saveGoals(goals);
+  todayIds = getTodayPicks(goals); renderAll();
+  setSyncState('syncing');
+  try { await API.add(goal); setSyncState('ok'); toast('目標已新增 🎯','ok'); }
+  catch(e) { setSyncState('error'); toast('同步失敗，已存本地','error'); }
+}
+
+async function toggleComplete(id, checked) {
+  animateCardMove(id, async () => {
+    const idx = goals.findIndex(g=>g.id===id); if(idx<0) return;
+    goals[idx] = {...goals[idx], completed:checked, progress:checked?100:goals[idx].progress, updated_at:nowIso()};
+    saveGoals(goals); todayIds=getTodayPicks(goals); renderAll();
+    if(checked) toast('🎉 完成一個目標！棒棒！','ok');
+  });
+  setSyncState('syncing');
+  try { const g=goals.find(g=>g.id===id); if(g) await API.update(g); setSyncState('ok'); }
+  catch(e) { setSyncState('error'); toast('同步失敗','error'); }
+}
+
+async function updateProgress(id, val) {
+  const idx = goals.findIndex(g=>g.id===id); if(idx<0) return;
+  goals[idx] = {...goals[idx], progress:val, updated_at:nowIso()};
+  saveGoals(goals); renderStats(goals);
+  setSyncState('syncing');
+  try { await API.update(goals[idx]); setSyncState('ok'); }
+  catch(e) { setSyncState('error'); toast('同步失敗','error'); }
+}
+
+async function deleteGoal(id) {
+  if (!confirm('確定要刪除這個目標嗎？')) return;
+  goals = goals.filter(g=>g.id!==id); saveGoals(goals);
+  todayIds=getTodayPicks(goals); renderAll();
+  setSyncState('syncing');
+  try { await API.del(id); setSyncState('ok'); toast('已刪除','info'); }
+  catch(e) { setSyncState('error'); toast('刪除同步失敗','error'); }
+}
+
+function bindSetup() {
+  const urlInput = document.getElementById('setupUrl');
+  const errEl    = document.getElementById('setupError');
+  const saveBtn  = document.getElementById('btnSetupSave');
+  saveBtn.addEventListener('click', async () => {
+    const url = urlInput.value.trim();
+    errEl.classList.remove('show'); errEl.textContent = '';
+    if (!url) { showErr(errEl,'請填入 URL'); return; }
+    if (!url.startsWith('https://script.google.com')) { showErr(errEl,'格式不對，請確認是 Apps Script 的 URL'); return; }
+    saveBtn.disabled=true; saveBtn.textContent='連線中…';
+    try {
+      await API.pingUrl(url);
+      saveUrl(url);
+      saveBtn.textContent='連線並開始使用 →'; saveBtn.disabled=false;
+      showApp();
+    } catch(e) {
+      saveBtn.textContent='連線並開始使用 →'; saveBtn.disabled=false;
+      showErr(errEl,'連線失敗：' + (e.message||'未知錯誤') + '，請確認 URL 並重試');
+    }
+  });
+  urlInput.addEventListener('keydown', e => { if(e.key==='Enter') saveBtn.click(); });
+}
+
+function bindConfig() {
+  const modal    = document.getElementById('configModal');
+  const urlInput = document.getElementById('configUrl');
+  const errEl    = document.getElementById('configError');
+  const openBtn  = document.getElementById('btnOpenConfig');
+  const closeBtn = document.getElementById('btnCloseConfig');
+  const cancelBtn= document.getElementById('btnCancelConfig');
+  const saveBtn  = document.getElementById('btnSaveConfig');
+  openBtn.addEventListener('click', () => { urlInput.value=getUrl(); errEl.classList.remove('show'); modal.style.display='flex'; });
+  const closeModal = () => modal.style.display='none';
+  closeBtn.addEventListener('click', closeModal);
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if(e.target===modal) closeModal(); });
+  saveBtn.addEventListener('click', async () => {
+    const url = urlInput.value.trim();
+    errEl.classList.remove('show');
+    if (!url||!url.startsWith('https://script.google.com')) { showErr(errEl,'URL 格式不正確'); return; }
+    saveBtn.disabled=true;
+    try {
+      await API.pingUrl(url); saveUrl(url); closeModal();
+      toast('連線成功，正在重新載入資料…','ok'); await loadAll();
+    } catch(e) { showErr(errEl,'連線失敗：'+e.message); }
+    saveBtn.disabled=false;
+  });
+}
+
+function bindAppEvents() {
+  const grid = document.getElementById('sectionsGrid');
+  grid.addEventListener('click', e => {
+    const addBtn = e.target.closest('.btn-add');
+    if (addBtn) {
+      const cat=addBtn.dataset.cat;
+      const inp=grid.querySelector(`.add-input[data-cat="${cat}"]`);
+      const sel=grid.querySelector(`.pri-select[data-cat="${cat}"]`);
+      addGoal(cat, inp.value, sel.value); inp.value=''; inp.focus(); return;
+    }
+    const delBtn = e.target.closest('.btn-del');
+    if (delBtn) { deleteGoal(delBtn.dataset.id); }
+  });
+  grid.addEventListener('keydown', e => {
+    if (e.key!=='Enter') return;
+    const inp = e.target.closest('.add-input'); if(!inp) return;
+    const cat=inp.dataset.cat;
+    const sel=grid.querySelector(`.pri-select[data-cat="${cat}"]`);
+    addGoal(cat, inp.value, sel.value); inp.value='';
+  });
+  grid.addEventListener('change', e => {
+    const cb = e.target.closest('.cb-input'); if(!cb) return;
+    toggleComplete(cb.id.replace('cb-',''), cb.checked);
+  });
+  grid.addEventListener('input', e => {
+    const slider = e.target.closest('.prog-slider'); if(!slider) return;
+    const id=slider.dataset.id, val=Number(slider.value);
+    updateProgUI(id, val);
+    clearTimeout(sliderTimer);
+    sliderTimer = setTimeout(() => updateProgress(id, val), 600);
+  });
+}
+
+function showErr(el, msg) { el.textContent=msg; el.classList.add('show'); }
+</script>
 </body>
 </html>
