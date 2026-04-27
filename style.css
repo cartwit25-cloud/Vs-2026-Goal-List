@@ -91,8 +91,12 @@ a { color: inherit; }
 .setup-overlay {
   position: fixed; inset: 0; z-index: 9000;
   background: linear-gradient(145deg, #eaf2f8 0%, #eaf4f0 100%);
-  display: flex; align-items: center; justify-content: center;
+  align-items: center; justify-content: center;
   padding: 24px;
+  display: none; /* hidden by default, JS sets display:flex when shown */
+}
+.setup-overlay:not([hidden]) {
+  display: flex;
 }
 .setup-card {
   background: var(--white);
